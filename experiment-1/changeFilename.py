@@ -1,19 +1,19 @@
 import os
 import datetime
-path = input("ÇëÊäÈëÎÄ¼ş¼ĞÂ·¾¶:\n") #ÎÄ¼ş¼ĞÄ¿Â¼
-files= os.listdir(path) #µÃµ½ÎÄ¼ş¼ĞÏÂµÄËùÓĞÎÄ¼şÃû³Æ
+path = input("è¯·è¾“å…¥æ–‡ä»¶å¤¹è·¯å¾„:\n") #æ–‡ä»¶å¤¹ç›®å½•
+files= os.listdir(path) #å¾—åˆ°æ–‡ä»¶å¤¹ä¸‹çš„æ‰€æœ‰æ–‡ä»¶åç§°
 s = []
-for file in files: #±éÀúÎÄ¼ş¼Ğ
-    if not os.path.isdir(file): #ÅĞ¶ÏÊÇ·ñÊÇÎÄ¼ş¼Ğ£¬²»ÊÇÎÄ¼ş¼Ğ²Å´ò¿ª
-        filename=file.split(".")#·Ö¸îÎÄ¼şÃûºÍÎÄ¼şºó×º
-        if "-" in filename[0]:#ÅĞ¶ÏÊÇ·ñÒÑ´æÔÚÊ±¼äºó×º
+for file in files: #éå†æ–‡ä»¶å¤¹
+    if not os.path.isdir(file): #åˆ¤æ–­æ˜¯å¦æ˜¯æ–‡ä»¶å¤¹ï¼Œä¸æ˜¯æ–‡ä»¶å¤¹æ‰æ‰“å¼€
+        filename=file.split(".")#åˆ†å‰²æ–‡ä»¶åå’Œæ–‡ä»¶åç¼€
+        if "-" in filename[0]:#åˆ¤æ–­æ˜¯å¦å·²å­˜åœ¨æ—¶é—´åç¼€
             old=filename[0].split("-")
             length=len(old)
             date=old[length-1]
             for i in range(4):
                 date=old[length-2-i]+'-'+date
             try:
-                datetime.datetime.strptime(date,'%Y-%m-%d-%H-%M')#ÅĞ¶ÏÊÇ·ñ·ûºÏ±ê×¼Ê±¼ä±í´ïÊ½
+                datetime.datetime.strptime(date,'%Y-%m-%d-%H-%M')#åˆ¤æ–­æ˜¯å¦ç¬¦åˆæ ‡å‡†æ—¶é—´è¡¨è¾¾å¼
                 print("true\n")
                 oldname=old[0]
                 for i in range(1,len(old)-5):
@@ -22,10 +22,10 @@ for file in files: #±éÀúÎÄ¼ş¼Ğ
                 oldname=file
         else:
             oldname=filename[0]
-        #Ìí¼Ó»ò¸üĞÂÊ±¼äºó×º
+        #æ·»åŠ æˆ–æ›´æ–°æ—¶é—´åç¼€
         if len(filename)>1:
             newname=oldname+'-'+ datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')+'.'+filename[1]
         else:
             newname=oldname+'-'+ datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
-        #ĞŞ¸ÄÎÄ¼şÃû
+        #ä¿®æ”¹æ–‡ä»¶å
         os.rename(file,newname)
